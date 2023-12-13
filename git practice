@@ -1,0 +1,57 @@
+from queue import Queue
+
+class CircularQueue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        self.queue.append(item)
+
+    def dequeue(self):
+        return self.queue.pop(0)
+
+    def isEmpty(self):
+        return len(self.queue) == 0
+
+def isValidPos(x, y):
+    # Your validation logic for checking if the position (x, y) is valid
+    return 0 <= x < MAZE_SIZE and 0 <= y < MAZE_SIZE and map[y][x] != '1'
+
+def BFS():
+    que = CircularQueue()
+    que.enqueue((1, 0))
+    print('BFS:')
+  
+    while not que.isEmpty():
+        here = que.dequeue()
+        print(here, end='->')
+        x, y = here
+        if map[y][x] == 'ㅌ':
+            return True
+        else:
+            map[y][x] = '.'
+            if isValidPos(x, y - 1):
+                que.enqueue((x, y - 1))
+            if isValidPos(x, y + 1):
+                que.enqueue((x, y + 1))
+            if isValidPos(x - 1, y):
+                que.enqueue((x - 1, y))
+            if isValidPos(x + 1, y):
+                que.enqueue((x + 1, y))
+    return False
+
+map = [
+    ['1', '1', '1', '1', '1', '1'],
+    ['e', '0', '1', '0', '0', '1'],
+    ['1', '0', '0', '0', '1', '1'],
+    ['1', '0', '1', '0', '1', '1'],
+    ['1', '0', '1', '0', '0', 'ㅌ'],
+    ['1', '1', '1', '1', '1', '1']
+]
+MAZE_SIZE = 6
+
+result = BFS()
+if result:
+    print(' --> 미로탐색 성공')
+else:
+    print(' --> 미로탐색 실패')
