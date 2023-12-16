@@ -1,0 +1,20 @@
+my_list = []
+
+my_list.insert(0,10)  #[10]
+my_list.insert(1,20)  #[10, 20]
+my_list.insert(0,30)  #[30, 10, 20]
+my_list.insert(2,40)  #[30, 10, 40, 20]
+my_list.insert(len(my_list), 50)  #[30, 10, 40, 20, 50]
+
+print("Initial List:", my_list)
+
+my_list.insert(1,60)  #[30, 60, 10, 40, 20, 50]
+print("After insert(1,60):", my_list)
+
+if len(my_list) >2:  
+    my_list[2] = 70  #[30, 60, 70, 40, 20, 50]
+    print("After replace(2,70):", my_list)
+    
+if len(my_list) >2:  
+    my_list[2]  #[30, 60, 40, 20, 50]
+    print("After replace(2,70):", my_list)
